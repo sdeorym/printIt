@@ -18,33 +18,26 @@ const slides = [
 	}
 ];
 
+let bannerPoints = [];
+
 //Creation of dots
-
-for (i=0; i<slides.length; i++) {
+for (i=0; i<slides.length; i++) {	
 	let dotDiv = document.querySelector(".dots");
-	let newSpan = document.createElement("span");
+	let newSpan = document.createElement("span");	
 	dotDiv.appendChild(newSpan);
-	newSpan.classList.add("dot");	
-}
-
-//Function to change and charge the images and taglines.
-function bannering(order) {
-	console.log("Este es el parámetro "+ order);
-    let container = document.getElementById("banner");
-	let imago = document.querySelector(".banner-img");
-    let motto = container.querySelector("p");
-
-    imago.src = slides[order].image; // Cambiar por la ruta de tu nueva imagen
-	motto.innerHTML = slides[order].tagLine;
+	newSpan.classList.add("dot");
+	bannerPoints.push(newSpan);
 }
 
 let currentImage = slides[0].image;
 let currentTagline = slides[0].tagLine;
 
 let k=0;
+bannerPoints[k].classList.add("dot_selected")
 
 let leftie=document.getElementById("leftie");
 leftie.addEventListener("click", function(event) {
+	bannerPoints[k].classList.remove("dot_selected")
 	k--;
 	if (k<0) {
 		k=slides.length-1;
@@ -56,6 +49,7 @@ leftie.addEventListener("click", function(event) {
 let rightey = document.getElementById("rightey");
 
 rightey.addEventListener("click", function(event) {
+	bannerPoints[k].classList.remove("dot_selected")
 	k++;
 	if (k>=slides.length) {
 		k=0;
@@ -63,7 +57,16 @@ rightey.addEventListener("click", function(event) {
 	bannering(k);
 });
 
-
+//Function to change and charge the images and taglines.
+function bannering(order) {
+	console.log("Este es el parámetro "+ order);
+    let container = document.getElementById("banner");
+	let imago = document.querySelector(".banner-img");
+    let motto = container.querySelector("p");
+    imago.src = slides[order].image; // Cambiar por la ruta de tu nueva imagen
+	motto.innerHTML = slides[order].tagLine;
+	bannerPoints[order].classList.add("dot_selected")
+}
 
 
 
