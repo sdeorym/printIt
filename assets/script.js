@@ -59,11 +59,10 @@ rightey.addEventListener("click", function(event) {
 
 //Function to change and charge the images and taglines.
 function bannering(order) {
-	console.log("Este es el parámetro "+ order);
     let container = document.getElementById("banner");
 	let imago = document.querySelector(".banner-img");
     let motto = container.querySelector("p");
-    imago.src = slides[order].image; // Cambiar por la ruta de tu nueva imagen
+    imago.src = slides[order].image; 
 	motto.innerHTML = slides[order].tagLine;
 	bannerPoints[order].classList.add("dot_selected")
 }
