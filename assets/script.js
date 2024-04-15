@@ -18,53 +18,61 @@ const slides = [
 	}
 ];
 
+
+//Variables initialisation
+let index=0;
 let bannerPoints = [];
+let dotDiv = "";
+let newSpan = "";
+let currentImage = "";
+let currentTagline = "";
+let leftArrow=document.getElementById("leftArrow");
+let rightArrow = document.getElementById("rightArrow");
+let container = "";
+let imago = "";
+let motto = "";
 
 //Creation of dots
-for (i=0; i<slides.length; i++) {	
-	let dotDiv = document.querySelector(".dots");
-	let newSpan = document.createElement("span");	
+for (i=0; i<slides.length; i++) {
+	dotDiv = document.querySelector(".dots");
+	newSpan = document.createElement("span");	
 	dotDiv.appendChild(newSpan);
 	newSpan.classList.add("dot");
 	bannerPoints.push(newSpan);
 }
 
-let currentImage = slides[0].image;
-let currentTagline = slides[0].tagLine;
 
-let k=0;
-bannerPoints[k].classList.add("dot_selected")
+// Images and arrows
+currentImage = slides[index].image;
+currentTagline = slides[index].tagLine;
+bannerPoints[index].classList.add("dot_selected")
 
-let leftie=document.getElementById("leftie");
-leftie.addEventListener("click", function(event) {
-	bannerPoints[k].classList.remove("dot_selected")
-	k--;
-	if (k<0) {
-		k=slides.length-1;
+leftArrow.addEventListener("click", function(event) {
+	bannerPoints[index].classList.remove("dot_selected")
+	index--;	
+	if (index<0) {
+		index=slides.length-1;
 	}
-	bannering(k); 
-	
+	bannering(index); 	
 });
 
-let rightey = document.getElementById("rightey");
-
-rightey.addEventListener("click", function(event) {
-	bannerPoints[k].classList.remove("dot_selected")
-	k++;
-	if (k>=slides.length) {
-		k=0;
+rightArrow.addEventListener("click", function(event) {	
+	bannerPoints[index].classList.remove("dot_selected")
+	index++;
+	if (index>=slides.length) {
+		index=0;
 	}
-	bannering(k);
+	bannering(index);
 });
 
 //Function to change and charge the images and taglines.
-function bannering(order) {
-    let container = document.getElementById("banner");
-	let imago = document.querySelector(".banner-img");
-    let motto = container.querySelector("p");
-    imago.src = slides[order].image; 
-	motto.innerHTML = slides[order].tagLine;
-	bannerPoints[order].classList.add("dot_selected")
+function bannering(index) {
+    container = document.getElementById("banner");
+	imago = document.querySelector(".banner-img");
+    motto = container.querySelector("p");
+    imago.src = slides[index].image; 
+	motto.innerHTML = slides[index].tagLine;
+	bannerPoints[index].classList.add("dot_selected")
 }
 
 
