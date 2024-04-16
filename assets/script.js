@@ -18,22 +18,21 @@ const slides = [
 	}
 ];
 
-
-//Variables initialisation
-let index=0;
+//Variable initialisation -besides initial array
+let index = 0;
 let bannerPoints = [];
 let dotDiv = "";
 let newSpan = "";
 let currentImage = "";
 let currentTagline = "";
-let leftArrow=document.getElementById("leftArrow");
+let leftArrow = document.getElementById("leftArrow");
 let rightArrow = document.getElementById("rightArrow");
 let container = "";
 let imago = "";
 let motto = "";
 
 //Creation of dots
-for (i=0; i<slides.length; i++) {
+for (i = 0; i<slides.length; i++) {
 	dotDiv = document.querySelector(".dots");
 	newSpan = document.createElement("span");	
 	dotDiv.appendChild(newSpan);
@@ -47,11 +46,13 @@ currentImage = slides[index].image;
 currentTagline = slides[index].tagLine;
 bannerPoints[index].classList.add("dot_selected")
 
+
+// Event Listeners
 leftArrow.addEventListener("click", function(event) {
 	bannerPoints[index].classList.remove("dot_selected")
 	index--;	
-	if (index<0) {
-		index=slides.length-1;
+	if (index < 0) {
+		index = slides.length-1;
 	}
 	bannering(index); 	
 });
@@ -59,8 +60,8 @@ leftArrow.addEventListener("click", function(event) {
 rightArrow.addEventListener("click", function(event) {	
 	bannerPoints[index].classList.remove("dot_selected")
 	index++;
-	if (index>=slides.length) {
-		index=0;
+	if (index >= slides.length) {
+		index = 0;
 	}
 	bannering(index);
 });
